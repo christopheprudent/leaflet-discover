@@ -1,22 +1,13 @@
-var mymap = L.map('mapid').setView([44.915376, -0.244534], 13);
+var map = L.map('mapid').setView([43.64701, -79.39425], 3);
+
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(mymap);
+}).addTo(map);
 
-// add marker
-var marker = L.marker([44.915376, -0.244534]).addTo(mymap);
-
-// add circle
-var circle = L.circle([44.915376, -0.3], {
-    color: 'red',
-    fillColor: '#f03',
-    fillOpacity: 0.5,
-    radius: 500
-}).addTo(mymap);
-
-// add polygon
-var polygon = L.polygon([
-    [44.915376, -0.22],
-    [44.9, -0.21],
-    [44.92, -0.19]
-]).addTo(mymap);
+// add Web Map Service
+L.tileLayer.wms("http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi", {
+    layers: 'nexrad-n0r-900913',
+    format: 'image/png',
+    transparent: true,
+    attribution: "Weather data © 2012 IEM Nexrad"
+}).addTo(map);
